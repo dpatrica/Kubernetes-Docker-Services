@@ -1,0 +1,14 @@
+docker system prune -a -f
+
+minikube delete --all
+minikube start --driver=docker
+
+minikube dashboard
+minikube service nginx
+
+Вход в Pod:
+kubectl exec -it dep-nginx-7b6d9c64c7-h7vj5 sh
+
+ssh root@(IP)
+
+minikube addons list

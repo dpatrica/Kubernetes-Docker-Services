@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: https
+    protocol: TCP
+    port: 443
+    targetPort: 443
+  - name: ssh
+    protocol: TCP
+    port: 22
+    targetPort: 22
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: kek_nginx
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        - containerPort: 22
+
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: nginx
+# spec:
+#   template:
+#     # template для пода
+#   spec:
+#     containers:
+#     - name: nginx
+#       image: kek_nginx
+#       # command: ['sh', '-c', 'echo "(: HALO KUBA :)" && sleep 3600']
+#     # restartPolicy: OnFailure
+#   # Под кончается тут :)
