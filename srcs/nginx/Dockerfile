@@ -12,9 +12,11 @@
 
 FROM alpine:latest
 
+RUN echo "root:admin" | chpasswd
 RUN apk update && apk upgrade
 RUN apk add nginx openssl openssh openrc
 RUN rc-update add sshd
+RUN openrc && touch /run/openrc/softlevel
 # -q -l --progress
 # supervisor
 
