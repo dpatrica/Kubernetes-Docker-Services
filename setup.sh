@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# eval $(minikube docker-env)
 minikube stop && minikube delete --all
 docker system prune -a -f
 minikube start --driver=docker --extra-config=apiserver.service-node-port-range=1-65535
@@ -8,7 +7,6 @@ eval $(minikube docker-env)
 minikube addons enable metallb
 minikube addons enable metrics-server
 minikube addons enable dashboard
-# eval $(minikube docker-env)
 docker build -t nginx srcs/nginx/.
 echo "kek_nginx is keked!"
 

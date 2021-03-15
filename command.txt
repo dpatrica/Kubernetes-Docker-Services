@@ -8,6 +8,7 @@ minikube service nginx
 
 Вход в Pod:
 kubectl exec -it dep-nginx-7b6d9c64c7-h7vj5 sh
+rc-service sshd status
 
 ssh root@(IP)
 
