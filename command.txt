@@ -13,3 +13,10 @@ rc-service sshd status
 ssh root@(IP)
 
 minikube addons list
+
+ 2>/dev/null
+
+         resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

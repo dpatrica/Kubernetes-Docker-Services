@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:latest
+FROM alpine:3.12
 
 RUN echo "root:admin" | chpasswd
 RUN apk update && apk upgrade
