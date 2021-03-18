@@ -1,13 +1,13 @@
 #!/bin/sh
 
-eval $(minikube docker-env)
-minikube addons enable metallb
-kubectl delete -f srcs/metallb/metallb.yaml
-kubectl delete -f srcs/nginx/nginx.yaml
-kubectl delete pods --all
-kubectl delete deploy nginx-dep
-kubectl delete service nginx-scv
-docker rmi $(docker images)
+# eval $(minikube docker-env)
+# minikube addons enable metallb
+# kubectl delete -f srcs/metallb/metallb.yaml
+# kubectl delete -f srcs/nginx/nginx.yaml
+# kubectl delete pods --all
+# kubectl delete deploy nginx-dep
+# kubectl delete service nginx-scv
+# docker rmi $(docker images)
 # minikube stop && minikube delete --all
 # docker system prune -a -f
 # minikube start --driver=docker --extra-config=apiserver.service-node-port-range=1-65535

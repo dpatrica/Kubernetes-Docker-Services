@@ -20,3 +20,8 @@ minikube addons list
           limits:
             memory: "128Mi"
             cpu: "500m"
+
+
+50 20 't'
+c 4.5 0.5 7 '*'
+c 4.5 0.5 7 '*'
