@@ -25,3 +25,12 @@ minikube addons list
 50 20 't'
 c 4.5 0.5 7 '*'
 c 4.5 0.5 7 '*'
+
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+sleep infinity
+
+      volumes:
+        - name: mysql
+          hostPath:
+            path: /mnt/mysql
+            type: Directory
