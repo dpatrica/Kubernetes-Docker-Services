@@ -6,32 +6,30 @@
 #    By: dpatrica <dpatrica@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 02:38:31 by dpatrica          #+#    #+#              #
-#    Updated: 2021/03/23 00:39:40 by dpatrica         ###   ########.fr        #
+#    Updated: 2021/03/23 06:14:30 by dpatrica         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM alpine:3.12
 
+ENV ip=192.168.99.115
+
 RUN apk update && apk upgrade
-RUN apk add nginx wget openrc openssh php7-common php7-iconv php7-json php7-gd php7-curl \
-php7-xml php7-mysqli php7-imap php7-cgi fcgi php7-pdo php7-pdo_mysql \
-php7-soap php7-xmlrpc php7-posix php7-mcrypt php7-gettext php7-ldap \
-php7-ctype php7-dom php php7-fpm
+RUN apk add pure-ftpd openrc openssl openssh
 
 RUN rc-update add sshd
 RUN openrc && touch /run/openrc/softlevel
-RUN mkdir -p /run/nginx
+RUN mkdir -p ftps/admin && adduser -D admin
+RUN echo admin:admin | chpasswd
 
-RUN wget https://wordpress.org/latest.tar.gz && \
-tar -xf latest.tar.gz && rm -rf latest.tar.gz && \
-mv wordpress /var/www/wordpress && \
-chown -R 777 /var/www/wordpress
+RUN openssl req -x509 -nodes -days 14 -newkey rsa:2048 -keyout \
+ /etc/ssl/super_server.pem -out /etc/ssl/super_server.pem -subj \
+ "/C=RF/ST=RT/L=Kazan/O=KekCompany/OU=IT/CN=dpatrica"
+RUN chmod 600 /etc/ssl/super_server.pem
 
-COPY wp-config.php /var/www/wordpress/
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY wordpress_on.sh /
-RUN chmod +x wordpress_on.sh
+COPY ftps_on.sh /
+RUN chmod +x ftps_on.sh
 
-EXPOSE 5050
+EXPOSE 21
 
-CMD sh wordpress_on.sh
+CMD sh ftps_on.sh

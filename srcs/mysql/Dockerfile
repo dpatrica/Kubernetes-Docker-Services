@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dpatrica <dpatrica@student.42.fr>          +#+  +:+       +#+         #
+#    By: dpatrica <dpatrica@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 02:38:31 by dpatrica          #+#    #+#              #
-#    Updated: 2021/03/09 05:07:33 by dpatrica         ###   ########.fr        #
+#    Updated: 2021/03/23 01:54:09 by dpatrica         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ RUN rc-update add sshd
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 RUN openrc && touch /run/openrc/softlevel
 
+COPY mariadb-server.cnf /etc/my.cnf.d
 COPY mysql_on.sh /
 
 VOLUME [ "/var/lib/mysql" ]
