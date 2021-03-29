@@ -4,12 +4,11 @@ metadata:
   name: phpmyadmin-svc
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  labels:
-    app: phpmyadmin
 spec:
   selector:
     app: phpmyadmin
   type: LoadBalancer
+  loadBalancerIP: 192.168.49.56
   ports:
   - port: 5000
     targetPort: 5000
@@ -35,9 +34,5 @@ spec:
       - name: phpmyadmin
         image: phpmyadmin-img
         imagePullPolicy: Never
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5000

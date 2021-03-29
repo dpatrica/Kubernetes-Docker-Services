@@ -4,15 +4,20 @@ metadata:
   name: ftps-svc
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  labels:
-    app: ftps
 spec:
   selector:
     app: ftps
   type: LoadBalancer
   ports:
-  - port: 21
+  - name: p21
+    port: 21
     targetPort: 21
+  - name: p2000
+    port: 2000
+    targetPort: 2000
+  - name: p2001
+    port: 2001
+    targetPort: 2001
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,9 +40,7 @@ spec:
       - name: ftps
         image: ftps-img
         imagePullPolicy: Never
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 21
+        - containerPort: 2000
+        - containerPort: 2001

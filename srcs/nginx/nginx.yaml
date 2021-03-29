@@ -4,12 +4,11 @@ metadata:
   name: nginx-svc
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
-  labels:
-    app: nginx
 spec:
   selector:
     app: nginx
   type: LoadBalancer
+  loadBalancerIP: 192.168.49.56
   ports:
   - name: http
     protocol: TCP
@@ -45,10 +44,6 @@ spec:
       - name: nginx
         image: nginx-img
         imagePullPolicy: Never
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 80
         - containerPort: 443

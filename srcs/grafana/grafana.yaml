@@ -1,37 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-svc
+  name: grafana-svc
   annotations:
     metallb.universe.tf/allow-shared-ip: shared
 spec:
   selector:
-    app: wordpress
+    app: grafana
   type: LoadBalancer
   ports:
-  - port: 5050
-    targetPort: 5050
+  - port: 3000
+    targetPort: 3000
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-dep
+  name: grafana-dep
   labels:
-    app: wordpress
+    app: grafana
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      app: grafana
   template:
     metadata:
-      name: wordpress-pod
+      name: grafana-pod
       labels:
-        app: wordpress
+        app: grafana
     spec:
       containers:
-      - name: wordpress
-        image: wordpress-img
+      - name: grafana
+        image: grafana-img
         imagePullPolicy: Never
         ports:
-        - containerPort: 5050
+        - containerPort: 3000

@@ -6,23 +6,21 @@
 #    By: dpatrica <dpatrica@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 02:38:31 by dpatrica          #+#    #+#              #
-#    Updated: 2021/03/23 01:54:09 by dpatrica         ###   ########.fr        #
+#    Updated: 2021/03/26 15:38:26 by dpatrica         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.12
+FROM alpine
 
 RUN apk update && apk upgrade
-RUN apk add mariadb mariadb-common mariadb-client openssh openrc
-RUN rc-update add sshd
-RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
-RUN openrc && touch /run/openrc/softlevel
+RUN apk add mariadb mariadb-common mariadb-client openrc
+RUN openrc 2>/dev/null && touch /run/openrc/softlevel 2>/dev/null
 
-COPY mariadb-server.cnf /etc/my.cnf.d
+COPY mariadb-server.cnf /etc/my.cnf
+COPY super_base.sql /
 COPY mysql_on.sh /
 
-VOLUME [ "/var/lib/mysql" ]
-RUN chmod +x mysql_on.sh
+RUN chmod +x /mysql_on.sh
 
 EXPOSE 3306
 

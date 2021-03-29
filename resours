@@ -1,0 +1,17 @@
+
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+
+
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+
+          - mountPath: /var/run/docker.sock
+            name: docker-sock
+
+
+  strategy:
+    type: Recreate

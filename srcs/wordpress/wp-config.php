@@ -3,7 +3,7 @@
 define( 'DB_NAME', 'super_base' );
 define( 'DB_USER', 'loser' );
 define( 'DB_PASSWORD', 'kek' );
-define( 'DB_HOST', 'localhost' );
+define( 'DB_HOST', 'mysql-svc' );
 define( 'DB_CHARSET', 'utf8' );
 define( 'DB_COLLATE', '' );
 
