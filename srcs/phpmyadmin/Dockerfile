@@ -6,7 +6,7 @@
 #    By: dpatrica <dpatrica@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/07 02:38:31 by dpatrica          #+#    #+#              #
-#    Updated: 2021/03/26 09:35:56 by dpatrica         ###   ########.fr        #
+#    Updated: 2021/03/30 04:08:36 by dpatrica         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,9 @@ RUN openssl req -x509 -nodes -days 14 -newkey rsa:2048 -keyout \
 
 COPY config.inc.php /phpmyadmin/config.inc.php
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY restart_php.sh /
 COPY phpmyadmin_on.sh /
+
 RUN chmod +x phpmyadmin_on.sh
 
 EXPOSE 5000

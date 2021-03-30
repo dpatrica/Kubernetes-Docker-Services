@@ -4,7 +4,3 @@ mkdir -p /etc/telegraf && touch /etc/telegraf/telegraf.conf
 telegraf start &
 /usr/sbin/influxd -config /etc/influxdb.conf
 telegraf &
-# /etc/init.d/telegraf start
-# telegraf start
-# telegraf
-# telegraf status

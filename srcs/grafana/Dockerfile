@@ -7,8 +7,6 @@ RUN openrc 2>/dev/null && touch /run/openrc/softlevel 2>/dev/null
 
 COPY grafana.db /
 
-# RUN mkdir -p /usr/share/grafana/data
-# COPY grafana.db /usr/share/grafana/data/
 COPY grafana_on.sh /
 RUN chmod +x grafana_on.sh
 

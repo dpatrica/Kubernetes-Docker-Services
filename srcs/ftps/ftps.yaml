@@ -12,12 +12,27 @@ spec:
   - name: p21
     port: 21
     targetPort: 21
-  - name: p2000
-    port: 2000
-    targetPort: 2000
-  - name: p2001
-    port: 2001
-    targetPort: 2001
+  - name: p20
+    port: 20
+    targetPort: 20
+  - name: p30000
+    port: 30000
+    targetPort: 30000
+  - name: p30001
+    port: 30001
+    targetPort: 30001
+  - name: p30002
+    port: 30002
+    targetPort: 30002
+  - name: p30003
+    port: 30003
+    targetPort: 30003
+  - name: p30004
+    port: 30004
+    targetPort: 30004
+  - name: p30005
+    port: 30005
+    targetPort: 30005
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -42,5 +57,10 @@ spec:
         imagePullPolicy: Never
         ports:
         - containerPort: 21
-        - containerPort: 2000
-        - containerPort: 2001
+        - containerPort: 20
+        - containerPort: 30000
+        - containerPort: 30001
+        - containerPort: 30002
+        - containerPort: 30003
+        - containerPort: 30004
+        - containerPort: 30005

@@ -47,6 +47,13 @@ spec:
             name: mysql-vol
         ports:
         - containerPort: 3306
+        livenessProbe:
+          exec:
+            command:
+              - "/bin/sh"
+              - "/restart_mysql.sh"
+          initialDelaySeconds: 50
+          periodSeconds: 5
       volumes:
         - name: mysql-vol
           persistentVolumeClaim:

@@ -49,6 +49,13 @@ spec:
             name: docker-sock
         ports:
         - containerPort: 8086
+        livenessProbe:
+          exec:
+            command:
+              - "/bin/sh"
+              - "/restart_influx.sh"
+          initialDelaySeconds: 50
+          periodSeconds: 5
       volumes:
         - name: influxdb-vol
           persistentVolumeClaim:
